@@ -1,20 +1,12 @@
 class Solution {
 public:
     int minMoves2(vector<int>& nums) {
-        int len = nums.size();
-        sort(nums.begin(),nums.end());
-        int mid = nums[len /2];
-        int t=0;
-        for(int i=0;i<len;i++){
-            
-
-            int moves = nums[i] - mid;
-            if(moves<0){
-                moves = moves * (-1);
-            }
-            t += moves;
-
+        int n = nums.size(), steps = 0;
+        nth_element(nums.begin(), nums.begin()+(n/2), nums.end()); //Fixing ths median element
+        int median = nums[n/2];
+        for(int i=0; i<n; i++){
+            steps += abs(nums[i] - median);
         }
-        return t;
+        return steps;
     }
 };
